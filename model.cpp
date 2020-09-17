@@ -82,7 +82,8 @@ void Model::addData()
 
 void Model::edit_item()
 {
-    Data *item = getItem(currentIndex);
+//    Data *item = getItem(currentIndex);
+    Data *item = items->at(currentIndex.row());
     if(!item)return;
 
     beginResetModel();
@@ -97,22 +98,20 @@ void Model::edit_item()
 
 void Model::delete_item()
 {
-    Data *item = getItem(currentIndex);
-    if(!item)return;
+//        Data *item = items->at(currentIndex.row());
+        Data *item = getItem(currentIndex);
+        if(!item)return;
 
-    beginRemoveRows(QModelIndex(), currentIndex.row(), currentIndex.row());
-    items->removeOne(item);
-    delete item;
-    endRemoveRows();
+        beginRemoveRows(QModelIndex(), currentIndex.row(), currentIndex.row());
+        items->removeOne(item);
+        delete item;
+        endRemoveRows();
 
-    delete_from_db();//Из базы также удаляем
+        delete_from_db(item);//Из базы также удаляем
 }
 
-Model::delete_from_db()
+Model::delete_from_db(Data *item)
 {
-    Data *item = getItem(currentIndex);
-    if(!item)return false;
-
     QSqlQuery query;
     query.setForwardOnly(true);
         query.prepare("DELETE FROM myDB WHERE id = :ID ;");
@@ -129,6 +128,7 @@ Model::delete_from_db()
         }
         return false;
 }
+
 
 Model::acceptIndexfromView(QModelIndex index)
 {

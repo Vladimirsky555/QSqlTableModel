@@ -32,7 +32,7 @@ void MainWindow::createUI()
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
 
     ui->tableView->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
-//    ui->tableView->setColumnHidden(2, true);
+    ui->tableView->setColumnHidden(0, true);
     ui->tableView->setAlternatingRowColors(true);
 }
 

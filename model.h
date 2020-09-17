@@ -35,7 +35,7 @@ protected slots:
     void delete_item();
 
 private:
-    delete_from_db();
+    delete_from_db(Data* item);
 
 public slots:
     acceptIndexfromView(QModelIndex index);
