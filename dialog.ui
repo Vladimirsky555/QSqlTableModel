@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>357</width>
-    <height>201</height>
+    <width>277</width>
+    <height>322</height>
    </rect>
   </property>
   <property name="font">
@@ -29,7 +29,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -55,7 +55,7 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>41</width>
+           <width>61</width>
            <height>16777215</height>
           </size>
          </property>
@@ -76,7 +76,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="cbxPerson"/>
+        <widget class="QComboBox" name="cbxPerson">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

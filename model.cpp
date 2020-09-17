@@ -249,9 +249,9 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
         return QVariant(Qt::AlignBaseline | Qt::AlignHCenter);
     case Qt::ForegroundRole:
     {
-        QFont F;
-        F.setBold(true);
-        return F;
+//        QFont F;
+//        F.setBold(true);
+//        return F;
     }
     default: return QVariant();
     }

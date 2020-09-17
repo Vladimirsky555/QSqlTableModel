@@ -9,6 +9,7 @@ namespace Ui {
 class Dialog;
 }
 
+
 class Dialog : public QDialog
 {
     Q_OBJECT
@@ -21,6 +22,7 @@ public:
 
     void load();
     void save();
+    void fillBoxes();
 
 private slots:
     void on_btnCancel_clicked();
