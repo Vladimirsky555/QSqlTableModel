@@ -29,15 +29,15 @@ void Dialog::load()
 
     if(item->Person() == "Никто"){
         ui->cbxPerson->setCurrentIndex(0);
-    } else if(item->Person() == "Артём"){
+    } else if(item->Person() == "Ален Делон"){
         ui->cbxPerson->setCurrentIndex(1);
-    }else if(item->Person() == "Александр"){
+    }else if(item->Person() == "Александр Македонский"){
         ui->cbxPerson->setCurrentIndex(2);
-    }else if(item->Person() == "Владимир"){
+    }else if(item->Person() == "Владимир Мономах"){
         ui->cbxPerson->setCurrentIndex(3);
-    }else if(item->Person() == "Яков"){
+    }else if(item->Person() == "Мадонна"){
         ui->cbxPerson->setCurrentIndex(4);
-    }else if(item->Person() == "Бато"){
+    }else if(item->Person() == "Чингисхан"){
         ui->cbxPerson->setCurrentIndex(5);
     }
 
