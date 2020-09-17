@@ -110,10 +110,13 @@ void Model::delete_item()
 
 Model::delete_from_db()
 {
+    Data *item = getItem(currentIndex);
+    if(!item)return false;
+
     QSqlQuery query;
     query.setForwardOnly(true);
         query.prepare("DELETE FROM myDB WHERE id = :ID ;");
-        query.bindValue(":ID", currentIndex.row());
+        query.bindValue(":ID", item->Id());
 
         if(!query.exec()){
             qCritical() << query.lastError().databaseText().toUtf8().data();
@@ -121,6 +124,7 @@ Model::delete_from_db()
             qCritical() << query.lastError().nativeErrorCode();
             return false;
         } else {
+            qDebug() << "Удалён элемент с индексом " << item->Id();
             return true;
         }
         return false;
@@ -128,7 +132,12 @@ Model::delete_from_db()
 
 Model::acceptIndexfromView(QModelIndex index)
 {
-    this->currentIndex = index;
+     this->currentIndex = index;
+    Data *item = items->at(index.row());
+
+    qDebug() << "Индекс из MainWindow - " << index.row() <<
+                "  Id из базы - " << item->Id();
+
 }
 
 bool Model::save_to_db(Data *item)
@@ -187,10 +196,11 @@ QVariant Model::dataDisplay(const QModelIndex &index) const
 {
     Data *item = items->at(index.row());
     switch (index.column()) {
-    case 0: return item->Date().isValid() ? item->Date().toString("dd.MM.yyyy") : "";
-    case 1: return item->Code();
-    case 2: return item->Person();
-    case 3: return item->Description();
+    case 0: return item->Id();
+    case 1: return item->Date().isValid() ? item->Date().toString("dd.MM.yyyy") : "";
+    case 2: return item->Code();
+    case 3: return item->Person();
+    case 4: return item->Description();
     default: return QVariant();
     }
 }
@@ -217,7 +227,7 @@ int Model::rowCount(const QModelIndex &parent) const
 int Model::columnCount(const QModelIndex &parent) const
 {
     if(!parent.isValid()){
-        return 4;
+        return 5;
     } else {
         return 0;
     }
@@ -241,10 +251,11 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
     switch (role) {
     case Qt::DisplayRole:
         switch (section) {
-        case 0: return tr("Дата");
-        case 1: return tr("Номер");
-        case 2: return tr("ФИО");
-        case 3: return tr("Комментарии");
+        case 0: return tr("Индекс");
+        case 1: return tr("Дата");
+        case 2: return tr("Номер");
+        case 3: return tr("ФИО");
+        case 4: return tr("Комментарии");
         default: return QVariant();
         }
     case Qt::TextAlignmentRole:

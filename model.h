@@ -49,7 +49,7 @@ protected:
     virtual QVariant    dataDisplay(const QModelIndex &index) const;
     virtual Data *getItem(const QModelIndex &I)const;
 
-    // QAbstractItemModel interface
+    // QSqlTableModel interface
 public:
     virtual int rowCount(const QModelIndex &parent) const;
     virtual int columnCount(const QModelIndex &parent) const;
