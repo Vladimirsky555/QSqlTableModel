@@ -157,14 +157,16 @@ bool Model::update_in_db(Data *item)
 {
     QSqlQuery query;
     query.setForwardOnly(true);
-    query.prepare("UPDATE myDB SET      \n"
-                  " code = :code,                     \n"
-                  " date = :date,                                \n"
-                  " person = :person,                        \n"
-                  " description = :description            \n"
-                  "WHERE id = :id;                                \n"
+    query.prepare("UPDATE myDB SET   "
+                  " id = :id, "
+                  " code = :code, "
+                  " date = :date, "
+                  " person = :person, "
+                  " description = :description "
+                  "WHERE id = :id; "
                   );
 
+    query.bindValue(":id", item->Id());
     query.bindValue(":code", item->Code());
     query.bindValue(":date", item->Date());
     query.bindValue(":person", item->Person());

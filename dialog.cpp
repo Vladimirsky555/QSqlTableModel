@@ -8,10 +8,7 @@ Dialog::Dialog(Data *item, QWidget *parent) :
     ui->setupUi(this);
 
     this->item = item;
-    setWindowTitle("Добавление варки");
-
-    this->item->setCode(0);
-    this->item->setDescription("Комментарий по умолчанию");
+    setWindowTitle("Добавление");
 
     fillBoxes();
     load();
@@ -53,15 +50,15 @@ void Dialog::save()
     if(ui->cbxPerson->currentIndex() == 0){
         item->setPerson("Никто");
     } else if(ui->cbxPerson->currentIndex() == 1){
-        item->setPerson("Артём");
+        item->setPerson("Ален Делон");
     }else if(ui->cbxPerson->currentIndex() == 2){
-        item->setPerson("Александр");
+        item->setPerson("Александр Македонский");
     }else if(ui->cbxPerson->currentIndex() == 3){
-        item->setPerson("Владимир");
+        item->setPerson("Владимир Мономах");
     }else if(ui->cbxPerson->currentIndex() == 4){
-        item->setPerson("Яков");
+        item->setPerson("Мадонна");
     }else if(ui->cbxPerson->currentIndex() == 5){
-        item->setPerson("Бато");
+        item->setPerson("Чингисхан");
     }
 
     item->setDescription(ui->textEdit->toPlainText());
@@ -69,12 +66,12 @@ void Dialog::save()
 
 void Dialog::fillBoxes()
 {
-    ui->cbxPerson->addItem("-------");
-    ui->cbxPerson->addItem("Артём");
-    ui->cbxPerson->addItem("Александр");
-    ui->cbxPerson->addItem("Владимир");
-    ui->cbxPerson->addItem("Яков");
-    ui->cbxPerson->addItem("Бато");
+    ui->cbxPerson->addItem("Никто");
+    ui->cbxPerson->addItem("Ален Делон");
+    ui->cbxPerson->addItem("Александр Македонский");
+    ui->cbxPerson->addItem("Владимир Мономах");
+    ui->cbxPerson->addItem("Мадонна");
+    ui->cbxPerson->addItem("Чингисхан");
 }
 
 void Dialog::on_btnCancel_clicked()
