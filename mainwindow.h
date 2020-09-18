@@ -27,8 +27,13 @@ private slots:
     void on_tableView_clicked(const QModelIndex &index);
     void on_addData_clicked();
 
+    void on_edtSearch_editingFinished();
+
+    void on_btnAll_clicked();
+
 signals:
     void sendIndextoModel(QModelIndex index);
+    void sendPerson(QString person);
 
 private:
     Ui::MainWindow *ui;

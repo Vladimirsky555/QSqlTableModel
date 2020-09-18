@@ -68,9 +68,7 @@ bool Application::createTable()
                     "date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
                     "person   VARCHAR(255),"
                     "description  TEXT"
-                    " )"
-
-                    )){
+                    " )"  )){
         QMessageBox::critical(NULL, "Сообщение!", "Ошибка создания базы данных! " +
                               query.lastError().text());
 

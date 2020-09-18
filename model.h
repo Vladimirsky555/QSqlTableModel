@@ -16,6 +16,9 @@ class Model : public QSqlTableModel
     QList<Data*>*items;//Список указателей на элементы
     QModelIndex currentIndex;
 
+    //Переменные для поиска
+    QString sPerson;//для поиска по человеку
+
 public:
     //Экшены
     QList<QAction*> allActions;
@@ -27,8 +30,11 @@ public:
     virtual ~Model();
 
     void selectAll();
+    void adjust_query();
+
     void addItem(Data *item);//В модель
     void addData();//В модель и базу
+
 
 protected slots:
     void edit_item();//В модель и базу
@@ -37,8 +43,10 @@ protected slots:
 private:
     delete_from_db(Data* item);
 
+
 public slots:
     acceptIndexfromView(QModelIndex index);
+    acceptPerson(QString person);
 
 private slots:
     bool save_to_db(Data *item);

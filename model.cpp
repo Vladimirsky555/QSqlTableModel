@@ -31,6 +31,7 @@ Model::~Model(){}
 
 void Model::selectAll()
 {
+    items->clear();
     QSqlQuery qry;
     qry.prepare(
                 "SELECT                   \n"
@@ -56,6 +57,40 @@ void Model::selectAll()
         qCritical() << err.driverText().toUtf8().data();
         qDebug() << qry.executedQuery();
     }
+
+    setQuery(qry);
+}
+
+void Model::adjust_query()
+{
+    items->clear();
+    QString queryText =
+                "SELECT                         \n"
+                "   id,                        \n"
+                "   code,             \n"
+                "   date,                  \n"
+                "   person,                  \n"
+                "   description                  \n"
+                " FROM myDB                   \n"
+                " WHERE person = :person  ; \n";
+
+        //Выполняем запрос
+        QSqlQuery qry;
+        qry.prepare(queryText);
+        qry.bindValue(":person", sPerson);
+
+        if(!qry.exec()){
+            qDebug() << qry.executedQuery();
+            qCritical() << qry.lastError().databaseText().toUtf8().data();
+            return;
+        }
+
+        while(qry.next()){
+            Data *item = new Data(this, qry);
+            addItem(item);
+        }
+
+        setQuery(qry);
 }
 
 void Model::addItem(Data *item)
@@ -138,6 +173,11 @@ Model::acceptIndexfromView(QModelIndex index)
     qDebug() << "Индекс из MainWindow - " << index.row() <<
                 "  Id из базы - " << item->Id();
 
+}
+
+Model::acceptPerson(QString person)
+{
+    this->sPerson = person;
 }
 
 bool Model::save_to_db(Data *item)

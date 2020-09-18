@@ -25,6 +25,9 @@ void MainWindow::createUI()
     connect(this, SIGNAL(sendIndextoModel(QModelIndex)),
             M, SLOT(acceptIndexfromView(QModelIndex)));
 
+    connect(this, SIGNAL(sendPerson(QString)),
+            M, SLOT(acceptPerson(QString)));
+
     ui->tableView->addActions(M->allActions);
     ui->tableView->setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -45,4 +48,15 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
 void MainWindow::on_addData_clicked()
 {
     M->addData();
+}
+
+void MainWindow::on_edtSearch_editingFinished()
+{
+    emit sendPerson(ui->edtSearch->text());
+    M->adjust_query();
+}
+
+void MainWindow::on_btnAll_clicked()
+{
+    M->selectAll();
 }

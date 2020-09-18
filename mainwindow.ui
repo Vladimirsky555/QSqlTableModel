@@ -114,7 +114,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>По ключевым словам:</string>
+              <string>По варщику:</string>
              </property>
             </widget>
            </item>
@@ -147,6 +147,18 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QPushButton" name="btnAll">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Весь список</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QPushButton" name="addData">
           <property name="sizePolicy">
